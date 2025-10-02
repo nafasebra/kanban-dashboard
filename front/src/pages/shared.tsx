@@ -1,4 +1,7 @@
 import { Link } from "react-router";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
+import { Bell, Settings, LayoutDashboard, Plus, Users, MoreVertical, Folder, Users as UsersIcon, Clock } from "lucide-react";
 
 export default function Shared() {
   const sharedBoards = [
@@ -52,35 +55,24 @@ export default function Shared() {
         </div>
         
         <nav className="flex-1 p-4 space-y-2">
-          <Link 
-            to="/" 
-            className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
-            </svg>
-            My Boards
-          </Link>
-          
-          <Link 
-            to="/create-board" 
-            className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-            </svg>
-            Create Board
-          </Link>
-          
-          <Link 
-            to="/shared" 
-            className="flex items-center gap-3 px-4 py-3 rounded-lg bg-blue-50 text-blue-600 font-medium"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
+          <Button variant="ghost" className="w-full justify-start" asChild>
+            <Link to="/">
+              <LayoutDashboard className="mr-2 h-4 w-4" />
+              My Boards
+            </Link>
+          </Button>
+
+          <Button variant="ghost" className="w-full justify-start" asChild>
+            <Link to="/create-board">
+              <Plus className="mr-2 h-4 w-4" />
+              Create Board
+            </Link>
+          </Button>
+
+          <Button variant="secondary" className="w-full justify-start">
+            <Users className="mr-2 h-4 w-4" />
             Shared with Me
-          </Link>
+          </Button>
         </nav>
         
         <div className="p-4 border-t border-gray-200">
@@ -107,18 +99,13 @@ export default function Shared() {
             </div>
             
             <div className="flex items-center gap-4">
-              <button className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-              </button>
-              
-              <button className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </button>
+              <Button variant="ghost" size="icon">
+                <Bell className="h-4 w-4" />
+              </Button>
+
+              <Button variant="ghost" size="icon">
+                <Settings className="h-4 w-4" />
+              </Button>
             </div>
           </div>
         </header>
@@ -128,96 +115,82 @@ export default function Shared() {
           {sharedBoards.length > 0 ? (
             <div className="space-y-4">
               {sharedBoards.map((board) => (
-                <div
-                  key={board.id}
-                  className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
-                >
+                <Card key={board.id} className="hover:shadow-md transition-shadow overflow-hidden">
                   <div className="flex">
                     {/* Color Bar */}
                     <div className={`w-2 bg-gradient-to-b ${board.color}`}></div>
-                    
+
                     {/* Content */}
-                    <div className="flex-1 p-6">
+                    <CardContent className="flex-1 p-6">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
-                            <h3 className="text-xl font-semibold text-gray-900">
+                            <CardTitle className="text-xl">
                               {board.name}
-                            </h3>
+                            </CardTitle>
                             <span className={`px-3 py-1 text-xs font-medium rounded-full ${
-                              board.role === "Editor" 
-                                ? "bg-green-100 text-green-700" 
+                              board.role === "Editor"
+                                ? "bg-green-100 text-green-700"
                                 : "bg-blue-100 text-blue-700"
                             }`}>
                               {board.role}
                             </span>
                           </div>
-                          <p className="text-gray-600 mb-4">{board.description}</p>
-                          
-                          <div className="flex items-center gap-6 text-sm text-gray-500">
+                          <CardDescription className="mb-4">{board.description}</CardDescription>
+
+                          <div className="flex items-center gap-6 text-sm text-muted-foreground">
                             <div className="flex items-center gap-2">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                              </svg>
+                              <Folder className="w-4 h-4" />
                               {board.tasks} tasks
                             </div>
-                            
+
                             <div className="flex items-center gap-2">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                              </svg>
+                              <UsersIcon className="w-4 h-4" />
                               {board.members} members
                             </div>
-                            
+
                             <div className="flex items-center gap-2">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                              </svg>
+                              <Clock className="w-4 h-4" />
                               Shared {board.sharedDate}
                             </div>
                           </div>
                         </div>
-                        
+
                         <div className="flex items-center gap-4 ml-6">
                           <div className="flex items-center gap-3">
                             <div className="text-right">
-                              <p className="text-xs text-gray-500">Owned by</p>
-                              <p className="text-sm font-medium text-gray-900">{board.owner}</p>
+                              <p className="text-xs text-muted-foreground">Owned by</p>
+                              <p className="text-sm font-medium">{board.owner}</p>
                             </div>
                             <div className={`w-12 h-12 rounded-full ${board.ownerColor} flex items-center justify-center text-white font-semibold`}>
                               {board.ownerInitials}
                             </div>
                           </div>
-                          
-                          <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                            </svg>
-                          </button>
+
+                          <Button variant="ghost" size="icon">
+                            <MoreVertical className="w-4 h-4" />
+                          </Button>
                         </div>
                       </div>
-                    </div>
+                    </CardContent>
                   </div>
-                </div>
+                </Card>
               ))}
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center h-full py-16">
               <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center mb-6">
-                <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
+                <Users className="w-12 h-12 text-gray-400" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No Shared Boards</h3>
+              <h3 className="text-xl font-semibold mb-2">No Shared Boards</h3>
               <p className="text-gray-500 text-center max-w-md mb-8">
                 Boards that others share with you will appear here. Start collaborating with your team!
               </p>
-              <Link
-                to="/"
-                className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-all"
-              >
-                Go to My Boards
-              </Link>
+              <Button asChild>
+                <Link to="/">
+                  Go to My Boards
+                </Link>
+              </Button>
             </div>
           )}
         </main>

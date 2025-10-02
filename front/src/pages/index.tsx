@@ -1,4 +1,7 @@
 import { Link } from "react-router";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
+import { Bell, Settings, LayoutDashboard, Plus, Users } from "lucide-react";
 
 export default function Board() {
   return (
@@ -10,35 +13,24 @@ export default function Board() {
         </div>
         
         <nav className="flex-1 p-4 space-y-2">
-          <Link 
-            to="/" 
-            className="flex items-center gap-3 px-4 py-3 rounded-lg bg-blue-50 text-blue-600 font-medium"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
-            </svg>
+          <Button variant="secondary" className="w-full justify-start">
+            <LayoutDashboard className="mr-2 h-4 w-4" />
             My Boards
-          </Link>
-          
-          <Link 
-            to="/create-board" 
-            className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-            </svg>
-            Create Board
-          </Link>
-          
-          <Link 
-            to="/shared" 
-            className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-            Shared with Me
-          </Link>
+          </Button>
+
+          <Button variant="ghost" className="w-full justify-start" asChild>
+            <Link to="/create-board">
+              <Plus className="mr-2 h-4 w-4" />
+              Create Board
+            </Link>
+          </Button>
+
+          <Button variant="ghost" className="w-full justify-start" asChild>
+            <Link to="/shared">
+              <Users className="mr-2 h-4 w-4" />
+              Shared with Me
+            </Link>
+          </Button>
         </nav>
         
         <div className="p-4 border-t border-gray-200">
@@ -65,18 +57,13 @@ export default function Board() {
             </div>
             
             <div className="flex items-center gap-4">
-              <button className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-              </button>
-              
-              <button className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </button>
+              <Button variant="ghost" size="icon">
+                <Bell className="h-4 w-4" />
+              </Button>
+
+              <Button variant="ghost" size="icon">
+                <Settings className="h-4 w-4" />
+              </Button>
             </div>
           </div>
         </header>
@@ -85,46 +72,46 @@ export default function Board() {
         <main className="flex-1 overflow-auto p-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Board Card 1 */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer overflow-hidden">
+            <Card className="cursor-pointer overflow-hidden hover:shadow-md transition-shadow">
               <div className="h-32 bg-gradient-to-br from-blue-500 to-blue-600"></div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Project Alpha</h3>
-                <p className="text-sm text-gray-500 mb-4">Development tasks for the main project</p>
+              <CardContent className="p-6">
+                <CardTitle className="mb-2">Project Alpha</CardTitle>
+                <CardDescription className="mb-4">Development tasks for the main project</CardDescription>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-600">12 tasks</span>
+                  <span className="text-muted-foreground">12 tasks</span>
                   <div className="flex -space-x-2">
                     <div className="w-8 h-8 rounded-full bg-purple-500 border-2 border-white"></div>
                     <div className="w-8 h-8 rounded-full bg-green-500 border-2 border-white"></div>
                     <div className="w-8 h-8 rounded-full bg-orange-500 border-2 border-white"></div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
 
             {/* Board Card 2 */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer overflow-hidden">
+            <Card className="cursor-pointer overflow-hidden hover:shadow-md transition-shadow">
               <div className="h-32 bg-gradient-to-br from-purple-500 to-purple-600"></div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Marketing Campaign</h3>
-                <p className="text-sm text-gray-500 mb-4">Q4 marketing initiatives and content</p>
+              <CardContent className="p-6">
+                <CardTitle className="mb-2">Marketing Campaign</CardTitle>
+                <CardDescription className="mb-4">Q4 marketing initiatives and content</CardDescription>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-600">8 tasks</span>
+                  <span className="text-muted-foreground">8 tasks</span>
                   <div className="flex -space-x-2">
                     <div className="w-8 h-8 rounded-full bg-blue-500 border-2 border-white"></div>
                     <div className="w-8 h-8 rounded-full bg-pink-500 border-2 border-white"></div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
 
             {/* Board Card 3 */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer overflow-hidden">
+            <Card className="cursor-pointer overflow-hidden hover:shadow-md transition-shadow">
               <div className="h-32 bg-gradient-to-br from-green-500 to-green-600"></div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Design System</h3>
-                <p className="text-sm text-gray-500 mb-4">UI/UX components and guidelines</p>
+              <CardContent className="p-6">
+                <CardTitle className="mb-2">Design System</CardTitle>
+                <CardDescription className="mb-4">UI/UX components and guidelines</CardDescription>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-600">15 tasks</span>
+                  <span className="text-muted-foreground">15 tasks</span>
                   <div className="flex -space-x-2">
                     <div className="w-8 h-8 rounded-full bg-red-500 border-2 border-white"></div>
                     <div className="w-8 h-8 rounded-full bg-yellow-500 border-2 border-white"></div>
@@ -132,24 +119,19 @@ export default function Board() {
                     <div className="w-8 h-8 rounded-full bg-cyan-500 border-2 border-white"></div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
 
             {/* Create New Board Card */}
-            <Link 
-              to="/create-board"
-              className="bg-white rounded-lg border-2 border-dashed border-gray-300 shadow-sm hover:border-blue-500 hover:shadow-md transition-all cursor-pointer overflow-hidden"
-            >
-              <div className="h-full flex flex-col items-center justify-center p-6 min-h-[280px]">
+            <Card className="border-2 border-dashed hover:border-blue-500 hover:shadow-md transition-all cursor-pointer">
+              <CardContent className="h-full flex flex-col items-center justify-center p-6 min-h-[280px]">
                 <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-4">
-                  <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                  </svg>
+                  <Plus className="w-8 h-8 text-blue-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Create New Board</h3>
-                <p className="text-sm text-gray-500 text-center">Start a new project and organize your tasks</p>
-              </div>
-            </Link>
+                <CardTitle className="mb-2">Create New Board</CardTitle>
+                <CardDescription className="text-center">Start a new project and organize your tasks</CardDescription>
+              </CardContent>
+            </Card>
           </div>
         </main>
       </div>
