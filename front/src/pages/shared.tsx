@@ -7,10 +7,6 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import {
-  Bell,
-  Settings,
-  LayoutDashboard,
-  Plus,
   Users,
   MoreVertical,
   Folder,

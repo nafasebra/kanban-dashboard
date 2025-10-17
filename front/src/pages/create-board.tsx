@@ -4,9 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardDescription, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Bell, Settings, LayoutDashboard, Plus, Users } from 'lucide-react';
-import Sidebar from '@/components/layout/sidebar';
-import Navbar from '@/components/layout/navbar';
 import DashboardWrapper from '@/components/wrapper';
 
 export default function CreateBoard() {

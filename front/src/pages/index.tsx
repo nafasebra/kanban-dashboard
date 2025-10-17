@@ -1,12 +1,10 @@
-import { Link } from 'react-router';
-import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardTitle,
 } from '@/components/ui/card';
-import { Bell, Settings, LayoutDashboard, Plus, Users } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import DashboardWrapper from '@/components/wrapper';
 
 export default function Board() {
