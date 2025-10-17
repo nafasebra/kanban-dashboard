@@ -9,14 +9,15 @@ interface DashboardWrapperProps {
 function DashboardWrapper({ children }: DashboardWrapperProps) {
   return (
     <div className="flex h-screen bg-background">
+      {/* Desktop Sidebar - Hidden on mobile */}
       <Sidebar />
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <Navbar />
 
-        {/* Content Area */}
-        <main className="flex-1 overflow-auto p-8 scrollbar-thin">
+        {/* Content Area - Responsive padding */}
+        <main className="flex-1 overflow-auto p-4 md:p-8 scrollbar-thin">
           {children}
         </main>
       </div>

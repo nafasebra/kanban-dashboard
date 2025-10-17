@@ -2,9 +2,13 @@ import { Button } from '../ui/button';
 import { LayoutDashboard, Plus, Users } from 'lucide-react';
 import { Link } from 'react-router';
 
-function Sidebar() {
+interface SidebarProps {
+  isMobile?: boolean;
+}
+
+function Sidebar({ isMobile = false }: SidebarProps) {
   return (
-    <aside className="w-64 bg-card border-r border-border flex flex-col shadow-sm">
+    <aside className={`${isMobile ? 'w-full h-full' : 'w-64 hidden md:flex'} bg-card ${!isMobile && 'border-r border-border'} flex flex-col shadow-sm`}>
       <div className="p-6 border-b border-border bg-gradient-to-r from-primary/5 to-primary/10">
         <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
           Kanban Board
