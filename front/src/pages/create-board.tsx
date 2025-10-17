@@ -29,27 +29,29 @@ export default function CreateBoard() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-background">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-gray-200 flex flex-col">
-        <div className="p-6 border-b border-gray-200">
-          <h1 className="text-2xl font-bold text-gray-800">Kanban Board</h1>
+      <aside className="w-64 bg-card border-r border-border flex flex-col shadow-sm">
+        <div className="p-6 border-b border-border bg-gradient-to-r from-primary/5 to-primary/10">
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+            Kanban Board
+          </h1>
         </div>
         
         <nav className="flex-1 p-4 space-y-2">
-          <Button variant="ghost" className="w-full justify-start" asChild>
+          <Button variant="ghost" className="w-full justify-start hover:bg-accent" asChild>
             <Link to="/">
               <LayoutDashboard className="mr-2 h-4 w-4" />
               My Boards
             </Link>
           </Button>
 
-          <Button variant="secondary" className="w-full justify-start">
+          <Button variant="default" className="w-full justify-start shadow-sm">
             <Plus className="mr-2 h-4 w-4" />
             Create Board
           </Button>
 
-          <Button variant="ghost" className="w-full justify-start" asChild>
+          <Button variant="ghost" className="w-full justify-start hover:bg-accent" asChild>
             <Link to="/shared">
               <Users className="mr-2 h-4 w-4" />
               Shared with Me
@@ -57,14 +59,14 @@ export default function CreateBoard() {
           </Button>
         </nav>
         
-        <div className="p-4 border-t border-gray-200">
-          <div className="flex items-center gap-3 px-4 py-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold">
+        <div className="p-4 border-t border-border bg-muted/30">
+          <div className="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-accent transition-colors cursor-pointer">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center text-white font-semibold shadow-md">
               JD
             </div>
             <div className="flex-1">
-              <p className="text-sm font-medium text-gray-900">John Doe</p>
-              <p className="text-xs text-gray-500">john@example.com</p>
+              <p className="text-sm font-medium text-foreground">John Doe</p>
+              <p className="text-xs text-muted-foreground">john@example.com</p>
             </div>
           </div>
         </div>
@@ -73,19 +75,20 @@ export default function CreateBoard() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="bg-white border-b border-gray-200 px-8 py-4">
+        <header className="bg-card border-b border-border px-8 py-4 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900">Create New Board</h2>
-              <p className="text-sm text-gray-500 mt-1">Set up a new board to organize your tasks</p>
+              <h2 className="text-2xl font-bold text-foreground">Create New Board</h2>
+              <p className="text-sm text-muted-foreground mt-1">Set up a new board to organize your tasks</p>
             </div>
             
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" size="icon">
+            <div className="flex items-center gap-3">
+              <Button variant="ghost" size="icon" className="hover:bg-accent relative">
                 <Bell className="h-4 w-4" />
+                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full"></span>
               </Button>
 
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="hover:bg-accent">
                 <Settings className="h-4 w-4" />
               </Button>
             </div>
@@ -93,17 +96,18 @@ export default function CreateBoard() {
         </header>
 
         {/* Content Area */}
-        <main className="flex-1 overflow-auto p-8">
+        <main className="flex-1 overflow-auto p-8 scrollbar-thin">
           <div className="max-w-3xl mx-auto">
-            <Card className="overflow-hidden">
+            <Card className="overflow-hidden shadow-lg border-border">
               {/* Preview */}
-              <div className={`h-48 bg-gradient-to-br ${colors.find(c => c.name === selectedColor)?.class || colors[0].class}`}>
-                <div className="h-full flex items-center justify-center">
+              <div className={`h-48 bg-gradient-to-br ${colors.find(c => c.name === selectedColor)?.class || colors[0].class} relative`}>
+                <div className="absolute inset-0 bg-grid-white/10"></div>
+                <div className="h-full flex items-center justify-center relative z-10">
                   <div className="text-center text-white">
-                    <CardTitle className="text-3xl mb-2">
+                    <CardTitle className="text-3xl mb-2 drop-shadow-lg">
                       {boardName || "Board Name"}
                     </CardTitle>
-                    <CardDescription className="text-lg opacity-90">
+                    <CardDescription className="text-lg text-white/90 drop-shadow">
                       {description || "Board description"}
                     </CardDescription>
                   </div>
@@ -111,9 +115,9 @@ export default function CreateBoard() {
               </div>
 
               {/* Form */}
-              <form onSubmit={handleSubmit} className="p-8 space-y-6">
+              <form onSubmit={handleSubmit} className="p-8 space-y-6 bg-card">
                 <div>
-                  <label htmlFor="boardName" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="boardName" className="block text-sm font-semibold text-foreground mb-2">
                     Board Name *
                   </label>
                   <Input
@@ -121,12 +125,13 @@ export default function CreateBoard() {
                     value={boardName}
                     onChange={(e) => setBoardName(e.target.value)}
                     placeholder="Enter board name"
+                    className="border-border focus:ring-primary"
                     required
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="description" className="block text-sm font-semibold text-foreground mb-2">
                     Description
                   </label>
                   <Textarea
@@ -134,11 +139,12 @@ export default function CreateBoard() {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Enter board description (optional)"
+                    className="border-border focus:ring-primary"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-3">
+                  <label className="block text-sm font-semibold text-foreground mb-3">
                     Board Color
                   </label>
                   <div className="grid grid-cols-4 gap-3">
@@ -147,23 +153,24 @@ export default function CreateBoard() {
                         key={color.name}
                         type="button"
                         onClick={() => setSelectedColor(color.name)}
-                        className={`h-16 rounded-lg bg-gradient-to-br ${color.class} transition-all ${
+                        className={`h-16 rounded-lg bg-gradient-to-br ${color.class} transition-all shadow-sm ${
                           selectedColor === color.name
-                            ? "ring-4 ring-offset-2 ring-gray-400 scale-105"
-                            : "hover:scale-105"
+                            ? "ring-4 ring-offset-2 ring-primary scale-105 shadow-lg"
+                            : "hover:scale-105 hover:shadow-md"
                         }`}
+                        aria-label={`Select ${color.name} color`}
                       />
                     ))}
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-6 border-t border-gray-200">
-                  <Button variant="ghost" asChild>
+                <div className="flex items-center justify-between pt-6 border-t border-border">
+                  <Button variant="ghost" asChild className="hover:bg-accent">
                     <Link to="/">
                       Cancel
                     </Link>
                   </Button>
-                  <Button type="submit">
+                  <Button type="submit" className="shadow-sm">
                     Create Board
                   </Button>
                 </div>
