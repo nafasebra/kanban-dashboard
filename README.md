@@ -2,6 +2,8 @@
 
 A collaborative Kanban board application inspired by Trello, built with React, Vite, NestJS, and MongoDB.
 
+> **Note:** The repository is currently updating.
+
 ## Features
 
 - **User Dashboard**: Each user has a dashboard with three main sections:
